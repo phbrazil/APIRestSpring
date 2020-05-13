@@ -1,2 +1,2 @@
-# Spring-boot-mysql
-How to configure mysql with  spring boot
+# Spring Boot com Mysql
+API Rest de gerenciamento de Tickets rodando na porta 9090
