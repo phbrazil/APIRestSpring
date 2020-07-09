@@ -9,25 +9,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javatechie.spring.mysql.api.dao.TicketDao;
-import com.javatechie.spring.mysql.api.model.Ticket;
+import com.javatechie.spring.mysql.api.model.tbUsuarios;
+import com.javatechie.spring.mysql.api.dao.UsuariosDAO;
 
 @RestController
-@RequestMapping("/ticket")
+@RequestMapping("/user")
 public class TicketController {
-	@Autowired
-	private TicketDao dao;
 
-	@PostMapping("/bookTickets")
-	public String bookTicket(@RequestBody List<Ticket> tickets) {
-            
-		dao.save(tickets);
-		return "ticket booked : " + tickets.size();
-	}
+    @Autowired
+    private UsuariosDAO dao;
 
-	@GetMapping("/getTickets")
-	public List<Ticket> getTickets() {
-		return (List<Ticket>) dao.findAll();
-	}
+    @PostMapping("/createUser")
+    public String bookTicket(@RequestBody List<tbUsuarios> usuarios) {
+
+        dao.save(usuarios);
+        return "user created : " + usuarios.size();
+    }
+
+    @GetMapping("/getUsers")
+    public List<tbUsuarios> getUsers() {
+        return (List<tbUsuarios>) dao.findAll();
+    }
+
+    @GetMapping("/getUser")
+    public tbUsuarios getUser(int idUser) {
+        return (tbUsuarios) dao.findOne(idUser);
+    }
+
+    @GetMapping("/deleteUser")
+    public String deleteUser(int idUser) {
+
+        dao.delete(idUser);
+        return "Success";
+    }
 
 }
